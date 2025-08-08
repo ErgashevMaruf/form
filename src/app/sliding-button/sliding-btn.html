@@ -1,0 +1,23 @@
+<div class="w-full flex !rounded-xl relative h-[48px]" [ngClass]="styleClass()">
+  <div
+    #div
+    class="h-full slidingDiv absolute p-1"
+    [style]="{ 'transform': 'translateX(' + (active() * 100) + '%)'}"
+    [ngStyle]="{ 'width': 'calc(100% / ' + tabs().length + ')' }"
+  >
+    <div class="bg-[#2E90FA] w-full h-full rounded-xl"></div>
+  </div>
+  @for (item of tabs(); track $index) {
+  <button
+    class="h-full rounded-xl z-10 relative w-full font-medium notActive bg-transparent p-1"
+    type="button"
+    [ngClass]="active()===$index ? 'text-white':'text-[#94A3B8]'"
+    (click)="changeActive($index)"
+  >
+    {{ item }}
+  </button>
+  }
+</div>
+<ng-template
+  *ngTemplateOutlet="$any(content()); context: { $implicit: active() }"
+></ng-template>
