@@ -5,6 +5,7 @@ import {
   FormArray,
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -14,12 +15,16 @@ import { createDateForm } from './utils/date-form';
 import { IBaseForm } from './model/base-form';
 import { createDescriptionForm } from './utils/description-form';
 import { createNameForm } from './utils/name-form';
-import { SlidingBtn, SlidingBtnEvent } from './sliding-button/sliding-btn';
+import { SlidingBtnEvent } from './sliding-button/sliding-btn';
 import { Languages } from './model/multilang';
 import { DatePickerModule } from 'primeng/datepicker';
 import { createStage } from './utils/stage-form';
 import { EditorModule } from 'primeng/editor';
 import { InputTextModule } from 'primeng/inputtext';
+import { PassportDataComponent } from './passport-data/passport-data.component';
+import { DateFormComponent } from './date-form/date-form.component';
+import { NameAndDescriptionComponent } from './name-and-description/name-and-description.component';
+import { SelectInfoComponent } from './select-info/select-info.component';
 @Component({
   selector: 'app-root',
   imports: [
@@ -28,10 +33,13 @@ import { InputTextModule } from 'primeng/inputtext';
     ReactiveFormsModule,
     SelectModule,
     AvatarModule,
-    SlidingBtn,
     DatePickerModule,
     EditorModule,
     InputTextModule,
+    DateFormComponent,
+    NameAndDescriptionComponent,
+    SelectInfoComponent,
+    FormsModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less',
@@ -41,17 +49,28 @@ export class AppComponent {
 
   title = 'form';
 
+  data = '';
+
   activeLang = signal('en');
+
+  passportData = signal('');
 
   olympCrudForm = new FormGroup<IBaseForm>({
     name: createNameForm(),
+
     description: createDescriptionForm(),
     ...createDateForm(),
+
     subjectId: new FormControl(null, Validators.required),
+
     studyYearId: new FormControl(null, Validators.required),
+
     organizerInstitutionId: new FormControl(null, Validators.required),
+
     type: new FormControl(1, Validators.required),
+
     schoolGradeId: new FormControl(null, Validators.required),
+
     stages: new FormArray<any>([]),
   });
 
@@ -64,5 +83,4 @@ export class AppComponent {
   removeStage(index: number) {
     this.olympCrudForm.controls.stages.removeAt(index);
   }
-  submitForm() {}
 }

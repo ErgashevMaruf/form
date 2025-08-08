@@ -1,0 +1,38 @@
+<div class="w-full flex justify-between gap-6 mt-6">
+  <div class="w-full">
+    <label for="">Select</label>
+    <p-select
+      label="subjects"
+      formControlName="subjectId"
+      [optionValue]="'id'"
+      class="w-full"
+    ></p-select>
+  </div>
+  <div class="w-full">
+    <label for="">Select</label>
+
+    <p-select
+      label="studyYearId"
+      formControlName="studyYearId"
+      [optionValue]="'id'"
+      class="w-full"
+    ></p-select>
+  </div>
+  <div class="w-full">
+    <label for="type">{{ "type" }}</label>
+    <p-select
+      styleClass="w-full"
+      [optionValue]="'value'"
+      formControlName="type"
+    ></p-select>
+  </div>
+  <div class="w-full">
+    <label for="">Select</label>
+    <p-select
+      label="organizerInstitutions"
+      formControlName="organizerInstitutionId"
+      [optionValue]="'id'"
+      class="w-full"
+    ></p-select>
+  </div>
+</div>

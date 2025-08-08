@@ -10,113 +10,15 @@
         <p-step-panel [value]="1">
           <ng-template #content let-activateCallback="activateCallback">
             <section class="container_section">
-              <app-sliding-btn
-                [content]="content"
-                [tabs]="languages"
-                (changeActiveTab)="changeActive($event)"
-              >
-                <ng-template #content let-active>
-                  <form class="w-full my-6" formGroupName="name">
-                    <label for="name">{{ "name" }}</label>
-                    <input
-                      [formControl]="
-                        $any(olympCrudForm.controls.name.get(activeLang()))
-                      "
-                      type="text"
-                      pInputText
-                      class="w-full"
-                    />
-                  </form>
-                  <form class="w-full" formGroupName="description">
-                    <label for="description">{{ "description" }}</label>
-                    <p-editor
-                      [formControl]="
-                        $any(
-                          olympCrudForm.controls.description.get(activeLang())
-                        )
-                      "
-                    ></p-editor>
-                  </form>
-                </ng-template>
-              </app-sliding-btn>
+              <app-name-and-description></app-name-and-description>
             </section>
           </ng-template>
         </p-step-panel>
         <p-step-panel [value]="2">
           <ng-template #content let-activateCallback="activateCallback">
             <section class="container_section">
-              <div class="w-full flex justify-between gap-6">
-                <div class="w-full">
-                  <label for="startDate">{{ "startDate" }}</label>
-                  <p-datepicker
-                    styleClass="w-full"
-                    formControlName="startDate"
-                  ></p-datepicker>
-                </div>
-                <div class="w-full">
-                  <label for="endDate">{{ "endDate" }}</label>
-                  <p-datepicker
-                    styleClass="w-full"
-                    formControlName="endDate"
-                  ></p-datepicker>
-                </div>
-                <div class="w-full">
-                  <label for="registrationStartDate">{{
-                    "registrationStartDate"
-                  }}</label>
-                  <p-datepicker
-                    styleClass="w-full"
-                    formControlName="registrationStartDate"
-                  ></p-datepicker>
-                </div>
-                <div class="w-full">
-                  <label for="registrationEndDate">{{
-                    "registrationEndDate"
-                  }}</label>
-                  <p-datepicker
-                    styleClass="w-full"
-                    formControlName="registrationEndDate"
-                  ></p-datepicker>
-                </div>
-              </div>
-              <div class="w-full flex justify-between gap-6 mt-6">
-                <div class="w-full">
-                  <label for="">Select</label>
-                  <p-select
-                    label="subjects"
-                    formControlName="subjectId"
-                    [optionValue]="'id'"
-                    class="w-full"
-                  ></p-select>
-                </div>
-                <div class="w-full">
-                  <label for="">Select</label>
-
-                  <p-select
-                    label="studyYearId"
-                    formControlName="studyYearId"
-                    [optionValue]="'id'"
-                    class="w-full"
-                  ></p-select>
-                </div>
-                <div class="w-full">
-                  <label for="type">{{ "type" }}</label>
-                  <p-select
-                    styleClass="w-full"
-                    [optionValue]="'value'"
-                    formControlName="type"
-                  ></p-select>
-                </div>
-                <div class="w-full">
-                  <label for="">Select</label>
-                  <p-select
-                    label="organizerInstitutions"
-                    formControlName="organizerInstitutionId"
-                    [optionValue]="'id'"
-                    class="w-full"
-                  ></p-select>
-                </div>
-              </div>
+              <app-date-form></app-date-form>
+              <app-select-info></app-select-info>
             </section>
           </ng-template>
         </p-step-panel>
@@ -139,67 +41,8 @@
                   >
                     <i class="pi pi-times-circle text-red-600 !text-[25px]"></i>
                   </button>
-                  <app-sliding-btn
-                    [content]="content"
-                    [tabs]="languages"
-                    (changeActiveTab)="changeActive($event)"
-                  >
-                    <ng-template #content let-active>
-                      <form class="w-full my-6" formGroupName="name">
-                        <label for="name">{{ "name" }}</label>
-                        <input
-                          [formControl]="
-                            $any(olympCrudForm.controls.name.get(activeLang()))
-                          "
-                          type="text"
-                          pInputText
-                          class="w-full"
-                        />
-                      </form>
-                      <form class="w-full" formGroupName="description">
-                        <label for="description">{{ "description" }}</label>
-                        <p-editor
-                          [formControl]="
-                            $any(olympCrudForm.controls.name.get(activeLang()))
-                          "
-                        ></p-editor>
-                      </form>
-                    </ng-template>
-                  </app-sliding-btn>
-                  <div class="w-full flex justify-between gap-6 mt-6">
-                    <div class="w-full">
-                      <label for="startDate">{{ "startDate" }}</label>
-                      <p-datepicker
-                        styleClass="w-full"
-                        formControlName="startDate"
-                      ></p-datepicker>
-                    </div>
-                    <div class="w-full">
-                      <label for="endDate">{{ "endDate" }}</label>
-                      <p-datepicker
-                        formControlName="endDate"
-                        styleClass="w-full"
-                      ></p-datepicker>
-                    </div>
-                    <div class="w-full">
-                      <label for="registrationStartDate">{{
-                        "registrationStartDate"
-                      }}</label>
-                      <p-datepicker
-                        styleClass="w-full"
-                        formControlName="registrationStartDate"
-                      ></p-datepicker>
-                    </div>
-                    <div class="w-full">
-                      <label for="registrationEndDate">{{
-                        "registrationEndDate"
-                      }}</label>
-                      <p-datepicker
-                        styleClass="w-full"
-                        formControlName="registrationEndDate"
-                      ></p-datepicker>
-                    </div>
-                  </div>
+                  <app-name-and-description></app-name-and-description>
+                  <app-date-form></app-date-form>
                 </div>
               </div>
               }
@@ -214,7 +57,7 @@
       </p-step-panels>
     </p-stepper>
     <div class="w-full flex justify-end">
-      <p-button [disabled]="olympCrudForm.invalid" (onClick)="submitForm()">{{
+      <p-button [disabled]="olympCrudForm.invalid">{{
         "Confirm_to_save"
       }}</p-button>
     </div>
